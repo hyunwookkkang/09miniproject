@@ -50,9 +50,7 @@
 			$(".Depth03:contains('판매상품관리')").on("click" , function(){
 				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct");
 			});
-			$(".Depth03:contains('판매상품관리')").on("click" , function(){
-				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct");
-			});
+
 			
 			$(".Depth03:contains('상 품 검 색')").on("click" , function(){
 				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct/search");
@@ -62,7 +60,7 @@
 				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listPurchase");
 			});
 			$(".Depth03:contains('최근 본 상품')").on("click" , function(){
-				$(window.parent.frames["rightFrame"].document.location).attr("href","javascript:history()");
+				$(window.parent.frames["rightFrame"].document.location).attr("href","history()");
 			});
 		});	
 		 
