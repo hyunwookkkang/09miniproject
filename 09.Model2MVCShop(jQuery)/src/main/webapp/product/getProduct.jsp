@@ -18,7 +18,7 @@
 		});
 		
 		 $( "td.ct_btn01:contains('±¸¸Å')" ).on("click" , function() {
-				self.location = "/product/updateProduct?prod_no=${product.prodNo}"
+				self.location = "/product/addPurchaseView?prod_no=${product.prodNo}"
 			});
 	});
 	</script>
