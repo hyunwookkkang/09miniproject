@@ -53,14 +53,14 @@
 
 			
 			$(".Depth03:contains('상 품 검 색')").on("click" , function(){
-				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct");
+				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct?menu=manage");
 			});
 			
 			$(".Depth03:contains('구매이력조회')").on("click" , function(){
-				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listPurchase");
+				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listPurchase?menu=search");
 			});
 			$(".Depth03:contains('최근 본 상품')").on("click" , function(){
-				history();
+				$(window.parent.frames["rightFrame"].document.location).attr("href","history()");
 			});
 		});	
 		 
