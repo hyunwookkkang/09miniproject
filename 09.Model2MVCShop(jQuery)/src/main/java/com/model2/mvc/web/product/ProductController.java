@@ -52,13 +52,19 @@ public class ProductController {
 	
 	
 	//@RequestMapping("/addProduct.do")
-	
 	@RequestMapping( value="addProduct", method=RequestMethod.GET )
+	public String addProduct() throws Exception{
+	
+		System.out.println("/product/addProduct : GET");
+		
+		return "redirect:/product/addProductView.jsp";
+	}
+	
+	
+	@RequestMapping( value="addProduct", method=RequestMethod.POST )
 	public String addProduct( @ModelAttribute("product") Product product,Model model ) throws Exception {
 
-		System.out.println("/product/addProduct : GET");
-		//ProductService productService;
-		//Business Logic
+		System.out.println("/product/addProduct : POST");
 		productService.addProduct(product);
 		model.addAttribute("vo", product);
 		return "forward:/product/informProduct.jsp";

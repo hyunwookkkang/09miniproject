@@ -53,7 +53,7 @@
 
 			
 			$(".Depth03:contains('상 품 검 색')").on("click" , function(){
-				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct/search");
+				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listProduct");
 			});
 			
 			$(".Depth03:contains('구매이력조회')").on("click" , function(){
