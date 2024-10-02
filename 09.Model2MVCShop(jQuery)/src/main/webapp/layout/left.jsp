@@ -60,7 +60,7 @@
 				$(window.parent.frames["rightFrame"].document.location).attr("href","/product/listPurchase");
 			});
 			$(".Depth03:contains('최근 본 상품')").on("click" , function(){
-				$(window.parent.frames["rightFrame"].document.location).attr("href","history()");
+				history();
 			});
 		});	
 		 
