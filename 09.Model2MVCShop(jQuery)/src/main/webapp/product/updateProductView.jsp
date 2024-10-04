@@ -44,12 +44,13 @@ function fncUpdateProduct(){
 		
 	//document.detailForm.action='/product/updateProduct';
 	//document.detailForm.submit();
-	$("form").attr("method" , "POST").attr("action" , "/product/updateProduct").submit();
+		$("form").attr("method" , "POST").attr("action" , "/product/updateProduct").submit();
+	}
 	$(function() {
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 		//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
 		 $( "td.ct_btn01:contains('수정')" ).on("click" , function() {
-			fncUpdateProduct();
+			 fncUpdateProduct();
 		});
 	});	
 	$(function() {
@@ -57,7 +58,7 @@ function fncUpdateProduct(){
 			history.go(-1);
 		});
 	});
-}
+
 
 
 </script>

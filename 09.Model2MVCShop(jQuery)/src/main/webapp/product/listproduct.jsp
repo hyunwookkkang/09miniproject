@@ -18,6 +18,7 @@
 		$("form").attr("method" , "GET").attr("action" , "/product/listProduct").submit();
 	}
 	$(function() {
+		var menu = "${menu}"; 
 		 
 		//==> 검색 Event 연결처리부분
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
@@ -33,18 +34,24 @@
 			//==> 3 과 1 방법 조합 : $(".className tagName:filter함수") 사용함.
 			$( ".ct_list_pop td:nth-child(3)" ).on("click" , function() {
 					//Debug..
-					//alert(  $( this ).text().trim() );
-					self.location ="/product/getProduct?prodNo="+$(this).text().trim()+"&menu=${param.menu}";
+					//alert(  $( this ).text().trim() );${vo.prodNo}
+					//self.location ="/product/getProduct?prodNo="+$(this).text().trim()+"&menu=${menu}";
+				//self.location ="/product/getProduct?prodNo="+$(this).text().trim()+"&menu=${menu}";
+				//현: $(this).text() 이건 클릭한 상품명을 반환하니 바꿈
+				<c:if test="${menu == 'manage'}">
+				self.location = "/product/updateProductView?prodNo=" + $(this).closest("tr").data("prodno") + "&menu=${menu}";
+				</c:if>
+				<c:if test="${menu == 'search'}">
+				self.location = "/product/getProduct?prodNo=" + $(this).closest("tr").data("prodno") + "&menu=${menu}";
+				</c:if>
+				
 			});
 			$( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");
 			$("h7").css("color" , "red");
 			
 			$(".ct_list_pop:nth-child(4n+6)" ).css("background-color" , "whitesmoke");
 			console.log ( $(".ct_list_pop:nth-child(6)" ).html() );//색 구분되며 출력 잘 되는지
-	});	
-			
-		
-		
+	});		
 		
 </script>
 </head>
@@ -55,7 +62,7 @@
 
  <!--<form name="detailForm" action="/product/listProduct" method="get">  -->
  <form name="detailForm">
-<input type="hidden" name="menu" value="${param.menu}">
+<input type="hidden" name="menu" value="${menu}">
 
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
@@ -66,10 +73,10 @@
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left:10px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-                    <c:if test="${param.menu=='manage'}">
+                    <c:if test="${menu=='manage'}">
 						<td width="93%" class="ct_ttl01">상품 관리</td>
 					</c:if>
-					<c:if test="${param.menu=='search'}">
+					<c:if test="${menu=='search'}">
 						<td width="93%" class="ct_ttl01">상품 검색</td>
 					</c:if>
 				</tr>
@@ -121,11 +128,11 @@
 	<tr>
 		<!-- <td class="ct_list_b" width="100">No</td>상품번호로 상세검색  -->
 		<td class="ct_list_b" width="100">
-				No<br>
-				<h7>(no click:상세정보)</h7>
+				No
 		</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">상품명</td>
+		<td class="ct_list_b" width="150">상품명<br>
+		<h7>(no click:상세정보)</h7></td>
 		<td class="ct_line02"></td>
 		<td class="ct_list_b" width="150">가격</td>
 		<td class="ct_line02"></td>
@@ -139,17 +146,14 @@
 	<c:set var="i" value="0" />
 	<c:forEach var="vo" items="${list}">
 		<c:set var="i" value="${ i+1 }" />
-		<tr class="ct_list_pop">
+		<tr class="ct_list_pop" data-prodno="${vo.prodNo}">
 		<td align="center">${ i }</td>
 		<td></td>
-		<c:if test="${param.menu=='manage'}" >
+		<c:if test="${menu=='manage'}" >
 			<!-- <td align="left"><a href="/product/updateProductView?prodNo=${vo.prodNo}&menu=${param.menu}">${vo.prodName}</a></td> -->
 			${vo.prodName}
 		</c:if>
-		<c:if test="${param.menu=='search'}">
-			 <!-- <td align="left"><a href="/product/getProduct?prodNo=${vo.prodNo}&menu=${param.menu}">${vo.prodName}</a></td>-->
-			${vo.prodName}
-		</c:if>
+		<td>${vo.prodName}</td>
 		<td></td>
 		<td align="left">${vo.price}</td>
 		<td></td>

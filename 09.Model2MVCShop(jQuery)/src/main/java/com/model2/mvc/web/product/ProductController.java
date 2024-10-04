@@ -136,6 +136,9 @@ public class ProductController {
 		model.addAttribute("resultPage", resultPage);
 		model.addAttribute("search", search);
 		
+		
+		String menu = request.getParameter("menu");//left.jsp에서 오는 manu값 추가
+	    model.addAttribute("menu", menu);
 		return "forward:/product/listproduct.jsp";
 	}
 }
